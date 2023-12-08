@@ -36,6 +36,7 @@ server.listen(port, () => {
 
 const client = new Client({
   puppeteer: {
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
     headless: false,
   },
   authStrategy: new LocalAuth(),
@@ -58,17 +59,19 @@ const authorPhone = async (phone) => {
   }
 };
 
-// Get messages and list push 
+// Get messages and list push
 const saveChats = async (chat) => {
   var msg = await chat.fetchMessages();
   await msg.map(async (element) => {
     console.log(element);
-    
+
     // Author phone number edit
     const author = await authorPhone(element.author);
 
-    // Checking for message existence 
-    const existingMessage = list.find((item) => item.messageId === element.id.id);
+    // Checking for message existence
+    const existingMessage = list.find(
+      (item) => item.messageId === element.id.id
+    );
 
     if (!existingMessage) {
       list.push({
