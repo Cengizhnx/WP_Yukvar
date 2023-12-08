@@ -34,13 +34,6 @@ server.listen(port, () => {
 //   console.log(`Server listening on the port:: ${port}`);
 // });
 
-// setup
-browser = await puppeteer.launch({
-  args: chromium.args,
-  executablePath: executablePath,
-  headless: chromium.headless,
-});
-
 const client = new Client({
   puppeteer: {
     headless: false,
