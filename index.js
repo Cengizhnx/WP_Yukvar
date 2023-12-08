@@ -36,6 +36,7 @@ server.listen(port, () => {
 
 const client = new Client({
   puppeteer: {
+    ignoreDefaultArgs: ["--disable-extensions"],
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
     headless: false,
   },
