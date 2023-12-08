@@ -1,0 +1,57 @@
+.fixed-input {
+  /* position: fixed;
+  top: 11%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; */
+  width: 65%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.btn {
+  min-width: 140px;
+}
+
+.form-select {
+  width: 65%;
+  padding: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .filter-buttons {
+    display: none; /* Hide filter buttons */
+  }
+
+  .filter-select {
+    display: flex; /* Show filter select */
+  }
+}
+
+@media (min-width: 769px) {
+  .filter-buttons {
+    display: flex; /* Show filter buttons */
+  }
+
+  .filter-select {
+    display: none; /* Hide filter select */
+  }
+}
+
+@media screen and (max-width: 330px) {
+  /* .btn {
+    padding: 7.5px;
+    min-width: 80px;
+    font-size: 11px;
+  } */
+  .fixed-input,
+  .form-select {
+    width: 70%;
+    padding: 8px;
+    font-size: 14px;
+  }
+}

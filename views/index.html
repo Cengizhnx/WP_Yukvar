@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Yükvar</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/tr.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body>
+    <section>
+      <div
+        class="container d-flex flex-column align-items-center justify-content-center mt-5 gap-3"
+      >
+        <h1>Yükvar</h1>
+        <input
+          type="text"
+          class="form-control fixed-input"
+          id="searchInput"
+          aria-describedby="searchText"
+          placeholder="Arama yapın..."
+        />
+
+        <!-- Messages counts -->
+        <p class="m-auto order-1 order-md-0">
+          <span class="fw-semibold" id="selectFilter"></span> Sonuçlar:
+          <span id="totalMessagesCount">0</span>
+        </p>
+        <!-- Option List -->
+        <select
+          class="form-select filter-select m-auto order-0 order-md-1"
+          aria-label="Filtrele"
+          id="filterDropdown"
+        >
+          <option value="hepsi">Hepsi</option>
+          <option value="İran">İran</option>
+          <option value="Rusya">Rusya</option>
+          <option value="Azerbaycan">Azerbaycan</option>
+          <option value="Türkmenistan">Türkmenistan</option>
+          <option value="Gürcistan">Gürcistan</option>
+          <option value="İsrail">İsrail</option>
+          <option value="Çin">Çin</option>
+          <option value="Japonya">Japonya</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Tunus">Tunus</option>
+          <option value="Ürdün">Ürdün</option>
+          <option value="Kuveyt">Kuveyt</option>
+          <option value="Suudi Arabistan">Suudi Arabistan</option>
+          <option value="Dubai">Dubai</option>
+          <option value="Katar">Katar</option>
+          <option value="Fas">Fas</option>
+          <option value="Mısırr">Mısır</option>
+          <option value="Yemen">Yemen</option>
+          <option value="Danimarka">Danimarka</option>
+          <option value="Macaristan">Macaristan</option>
+          <option value="Portekiz">Portekiz</option>
+          <option value="İtalya">İtalya</option>
+          <option value="Belçika">Belçika</option>
+          <option value="İspanya">İspanya</option>
+          <option value="Fransa">Fransa</option>
+          <option value="Almanya">Almanya</option>
+          <option value="Romanya">Romanya</option>
+          <option value="Arnavutluk">Arnavutluk</option>
+          <option value="Bulgaristan">Bulgaristan</option>
+        </select>
+      </div>
+    </section>
+
+    <section>
+      <div class="container my-3">
+        <div
+          class="d-flex col-12 flex-column flex-md-row align-items-start justify-content-between"
+        >
+          <!-- Buttons 1 -->
+          <div
+            class="col-12 col-md-3 d-flex align-items-center justify-content-center"
+          >
+            <div
+              class="flex-wrap justify-content-center col-12 gap-3 filter-buttons"
+            >
+              <button type="button" class="btn btn-primary">Hepsi</button>
+              <button type="button" class="btn btn-secondary">İran</button>
+              <button type="button" class="btn btn-secondary">Rusya</button>
+              <button type="button" class="btn btn-secondary">
+                Azerbaycan
+              </button>
+              <button type="button" class="btn btn-secondary">
+                Türkmenistan
+              </button>
+              <button type="button" class="btn btn-secondary">Gürcistan</button>
+              <button type="button" class="btn btn-secondary">İsrail</button>
+              <button type="button" class="btn btn-secondary">Çin</button>
+              <button type="button" class="btn btn-secondary">Japonya</button>
+              <button type="button" class="btn btn-secondary">Pakistan</button>
+              <button type="button" class="btn btn-secondary">Tunus</button>
+              <button type="button" class="btn btn-secondary">Ürdün</button>
+              <button type="button" class="btn btn-secondary">Kuveyt</button>
+              <button type="button" class="btn btn-secondary">
+                Suudi Arabistan
+              </button>
+              <button type="button" class="btn btn-secondary">Dubai</button>
+            </div>
+          </div>
+
+          <!-- Messages -->
+          <div
+            class="messages col-12 col-md-5 d-flex flex-column align-items-start justify-content-center gap-3 px-4 p-md-0"
+          ></div>
+
+          <!-- Buttons 2 -->
+          <div
+            class="col-12 col-md-3 d-flex align-items-center justify-content-center"
+          >
+            <div
+              class="flex-wrap justify-content-center col-12 gap-3 filter-buttons"
+            >
+              <button type="button" class="btn btn-secondary">Katar</button>
+              <button type="button" class="btn btn-secondary">Fas</button>
+              <button type="button" class="btn btn-secondary">Mısır</button>
+              <button type="button" class="btn btn-secondary">Yemen</button>
+              <button type="button" class="btn btn-secondary">Danimarka</button>
+              <button type="button" class="btn btn-secondary">
+                Macaristan
+              </button>
+              <button type="button" class="btn btn-secondary">Portekiz</button>
+              <button type="button" class="btn btn-secondary">İtalya</button>
+              <button type="button" class="btn btn-secondary">Belçika</button>
+              <button type="button" class="btn btn-secondary">İspanya</button>
+              <button type="button" class="btn btn-secondary">Fransa</button>
+              <button type="button" class="btn btn-secondary">Almanya</button>
+              <button type="button" class="btn btn-secondary">Romanya</button>
+              <button type="button" class="btn btn-secondary">
+                Arnavutluk
+              </button>
+              <button type="button" class="btn btn-secondary">
+                Bulgaristan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      moment.locale("tr");
+      let searchText = "";
+      let totalMessagesCount = 0;
+
+      // Get Messages
+      function updateMessages(searchText) {
+        $.ajax({
+          url: "/getMessages",
+          method: "GET",
+          dataType: "json",
+          success: function (updateList) {
+            const messageContainer = $(".messages");
+            messageContainer.empty();
+
+            totalMessagesCount = 0;
+
+            updateList.forEach(function (message) {
+              if (
+                !searchText ||
+                message.messageText
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase())
+              ) {
+                const card = `
+            <div class="card border-dark mb-3 w-100">
+              <div class="card-header">${moment
+                .unix(message.messageTimeStamp)
+                .fromNow()} paylaşıldı
+              </div>
+              <div class="card-body text-dark d-flex flex-column gap-2">
+                <h5 class="card-title">${message.messageText}</h5>
+                <p class="card-text d-flex gap-1"><i class="bi bi-telephone"></i>${
+                  message.messageAuthor
+                }</p>
+              </div>
+            </div>
+          `;
+                messageContainer.append(card);
+                totalMessagesCount++;
+              }
+            });
+            $("#totalMessagesCount").text(totalMessagesCount);
+            $("#selectFilter").text(searchText);
+          },
+          error: function (error) {
+            console.error("Error fetching messages:", error);
+          },
+        });
+      }
+
+      // Button country filter and style class
+      $(".btn").on("click", function () {
+        const buttonText = $(this).text();
+        searchText = buttonText.toLowerCase() === "hepsi" ? "" : buttonText;
+
+        updateMessages(searchText);
+
+        $(".btn").removeClass("btn-primary");
+        $(".btn").addClass("btn-secondary");
+        $(this).removeClass("btn-secondary");
+        $(this).addClass("btn-primary");
+      });
+
+      // Option list filter
+      $("#filterDropdown").on("change", function () {
+        const selectedValue = $(this).val();
+        searchText = selectedValue === "hepsi" ? "" : selectedValue;
+        updateMessages(searchText);
+      });
+
+      //input search
+      $("#searchInput").on("input", function () {
+        searchText = $(this).val();
+        updateMessages();
+      });
+
+      // DOM updateMessages
+      document.addEventListener("DOMContentLoaded", () => {
+        updateMessages(searchText);
+      });
+
+      // 3 seconds updateMessages
+      setInterval(function () {
+        console.log(searchText);
+        updateMessages(searchText);
+      }, 3000);
+    </script>
+  </body>
+</html>
