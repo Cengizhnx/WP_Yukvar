@@ -3,6 +3,7 @@ import http from "http";
 import { Server } from "socket.io";
 import path from "path";
 import pkg from "whatsapp-web.js";
+import puppeteer from "puppeteer"; // Import puppeteer
 
 const { Client, LocalAuth } = pkg;
 const app = express();
@@ -33,6 +34,20 @@ server.listen(port, () => {
 // app.listen(port, () => {
 //   console.log(`Server listening on the port:: ${port}`);
 // });
+
+if (process.env.NETLIFY_DEV) {
+  var executablePath = "/opt/homebrew/bin/chromium";
+} else {
+  // Define chromium object from puppeteer
+  const browser = await puppeteer.launch();
+  var executablePath = await browser.executablePath();
+}
+// setup
+browser = await puppeteer.launch({
+  args: chromium.args,
+  executablePath: executablePath,
+  headless: chromium.headless,
+});
 
 const client = new Client({
   puppeteer: {
