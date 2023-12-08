@@ -34,10 +34,20 @@ server.listen(port, () => {
 //   console.log(`Server listening on the port:: ${port}`);
 // });
 
+if (process.env.NETLIFY_DEV) {
+  var executablePath = "/opt/homebrew/bin/chromium";
+} else {
+  var executablePath = await chromium.executablePath;
+}
+// setup
+browser = await puppeteer.launch({
+  args: chromium.args,
+  executablePath: executablePath,
+  headless: chromium.headless,
+});
+
 const client = new Client({
   puppeteer: {
-    ignoreDefaultArgs: ["--disable-extensions"],
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
     headless: false,
   },
   authStrategy: new LocalAuth(),
