@@ -44,7 +44,8 @@ const client = new Client({
 });
 
 client.on("qr", (qr) => {
-  qrcode.generate(qr, { small: true });
+  console.log("QR RECEIVED", qr);
+  // qrcode.generate(qr, { small: true });
 });
 
 const authorPhone = async (phone) => {
