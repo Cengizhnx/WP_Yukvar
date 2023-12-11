@@ -37,7 +37,7 @@ server.listen(port, () => {
 
 const client = new Client({
   puppeteer: {
-    headless: false,
+    headless: true,
     args: ["--no-sandbox"],
   },
   authStrategy: new LocalAuth(),
