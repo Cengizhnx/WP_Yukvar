@@ -62,25 +62,32 @@ const authorPhone = async (phone) => {
 
 // Get messages and list push
 const saveChats = async (chat) => {
+  const currentTime = Date.now();
+  const fortyEightHoursAgo = 48 * 60 * 60 * 1000;
+
   var msg = await chat.fetchMessages();
   await msg.map(async (element) => {
-    console.log(element);
+    // Check if the message is from the last 48 hours
+    if (
+      currentTime - element.timestamp > fortyEightHoursAgo &&
+      element.body != ""
+    ) {
+      // Author phone number edit
+      const author = await authorPhone(element.author);
 
-    // Author phone number edit
-    const author = await authorPhone(element.author);
+      // Checking for message existence
+      const existingMessage = list.find(
+        (item) => item.messageId === element.id.id
+      );
 
-    // Checking for message existence
-    const existingMessage = list.find(
-      (item) => item.messageId === element.id.id
-    );
-
-    if (!existingMessage) {
-      list.push({
-        messageId: element.id.id,
-        messageText: element.body,
-        messageTimeStamp: element.timestamp,
-        messageAuthor: author,
-      });
+      if (!existingMessage) {
+        list.push({
+          messageId: element.id.id,
+          messageText: element.body,
+          messageTimeStamp: element.timestamp,
+          messageAuthor: author,
+        });
+      }
     }
   });
 
