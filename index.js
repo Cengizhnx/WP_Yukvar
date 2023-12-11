@@ -3,6 +3,7 @@ import http from "http";
 import { Server } from "socket.io";
 import path from "path";
 import pkg from "whatsapp-web.js";
+import qrcode from "qrcode-terminal";
 
 const { Client, LocalAuth } = pkg;
 const app = express();
@@ -36,14 +37,13 @@ server.listen(port, () => {
 
 const client = new Client({
   puppeteer: {
-    args: ["--no-sandbox"],
     headless: false,
   },
   authStrategy: new LocalAuth(),
 });
 
 client.on("qr", (qr) => {
-  console.log("QR RECEIVED", qr);
+  qrcode.generate(qr, { small: true });
 });
 
 const authorPhone = async (phone) => {
